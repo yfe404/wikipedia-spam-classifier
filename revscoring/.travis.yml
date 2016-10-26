@@ -1,0 +1,60 @@
+language: python
+sudo: true
+python:
+  - "3.5"
+addons:
+  apt:
+    packages:
+    - g++
+    - gfortran
+    - libblas-dev
+    - liblapack-dev
+    - libopenblas-dev
+    - python3-dev
+    - enchant
+    - aspell-ar
+    - aspell-de
+    - aspell-hi
+    - aspell-hu
+    - aspell-nl
+    - aspell-id
+    - aspell-pl
+    - aspell-sv
+    - myspell-cs
+    - myspell-en-au
+    - myspell-en-gb
+    - myspell-en-us
+    - myspell-en-za
+    - aspell-et
+    - myspell-fa
+    - myspell-fr
+    - myspell-es
+    - myspell-he
+    - myspell-it
+    - myspell-nb
+    - hunspell-vi
+    - myspell-pt
+    - aspell-ru
+    - aspell-uk
+    - aspell-ta
+
+before_install: {}
+install:
+  - python --version
+  - travis_wait pip install -r requirements.txt || date
+  - python -c "import numpy;print(numpy.__version__)"
+  - python -c "import scipy;print(scipy.__version__)"
+  - python -m nltk.downloader stopwords
+  - pip install codecov
+script:
+  - nosetests -v --with-coverage --cover-package=revscoring --exclude="test_hindi.py|test_tamil.py"
+after_success:
+    codecov
+notifications:
+  irc:
+    channels:
+      - "chat.freenode.net#wikimedia-ai"
+    on_success: change
+    on_failure: change
+    template:
+      - "%{repository_slug}#%{build_number} (%{branch} - %{commit} : %{author}): %{message} %{build_url}"

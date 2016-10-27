@@ -32,7 +32,8 @@ Vagrant.configure(2) do |config|
   # the folder /notebooks within the container 
   config.vm.provision "docker" do |d|
     d.run "nealmcb/revscoring",
-    args: "-p 8888:8888 -v /vagrant/notebooks/:/notebooks nealmcb/revscoring jupyter notebook --no-browser"
+    args: "-p 8888:8888 -v /vagrant/notebooks/:/notebooks",
+    cmd: "jupyter notebook --no-browser"
   end
 
 end

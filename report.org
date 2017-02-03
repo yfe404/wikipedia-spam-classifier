@@ -1,0 +1,4 @@
+#+TITLE: Wikipedia Spam CLassifier
+#+AUTHOR: Abdelkarim BAHOUSS & Yann FEUNTEUN
+#+EMAIL: abdelkarim.bahouss@telecom-bretagne.eu, yann.feunteun@protonmail.com
+
